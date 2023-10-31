@@ -1,5 +1,5 @@
 const Game = () => {
-  return <></>;
+  return <>Game starts!</>;
 };
 
 export default Game;
