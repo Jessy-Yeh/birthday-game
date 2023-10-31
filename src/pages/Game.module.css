@@ -1,0 +1,14 @@
+.photo {
+  width: 85%;
+  border-radius: 20px;
+}
+
+/* .form {
+  display: flex;
+  flex-direction: column;
+} */
+
+form > button {
+  display: block;
+  margin: 1.3em auto;
+}
