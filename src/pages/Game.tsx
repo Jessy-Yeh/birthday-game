@@ -2,37 +2,14 @@ import { useState } from "react";
 
 import InputForm from "./InputForm";
 import styles from "./Game.module.css";
-import photo1 from "../assets/2013-01-16.jpg";
-import photo2 from "/Users/yejiejun/Documents/web-dev/birthday-game/birthday-game/src/assets/2013-03-12.jpg";
 import Result from "./Result";
-
-const questions = [
-  {
-    link: photo1,
-    year: 2013,
-    month: 1,
-  },
-  {
-    link: photo2,
-    year: 2013,
-    month: 3,
-  },
-];
+import { questions } from "./questions";
 
 const Game = () => {
   const [questionCount, setQuestionCount] = useState(0);
-  const [year, setYear] = useState("");
-  const [month, setMonth] = useState("");
+  const [answers, setAnswers] = useState<string[]>([]);
   const [clickSubmit, setClickSubmit] = useState(false);
-  const [point, setPoint] = useState(0);
-
-  const formCollections = questions.map((question, index) => {
-    return (
-      <div className={styles.form} key={index}>
-        <img className={styles.photo} src={question.link} />
-      </div>
-    );
-  });
+  const [totalPoints, setTotalPoints] = useState(0);
 
   // const calculatePoints = () => {
   //   if (ifYearCorrect && ifMonthCorrect) {
@@ -48,25 +25,26 @@ const Game = () => {
   return (
     <>
       <h2>
-        目前友情分數：<span>{point}</span>分
+        目前友情分數：<span>{totalPoints}</span>分
       </h2>
-      {formCollections[questionCount]}
+      <div className={styles.form}>
+        <img className={styles.photo} src={questions[questionCount].link} />
+      </div>
       {clickSubmit ? (
         <Result
-          year={year}
-          month={month}
-          clickSubmit={clickSubmit}
+          answers={answers}
+          setAnswers={setAnswers}
           setClickSubmit={setClickSubmit}
           questionCount={questionCount}
           setQuestionCount={setQuestionCount}
+          setTotalPoints={setTotalPoints}
         />
       ) : (
         <InputForm
-          year={year}
-          setYear={setYear}
-          month={month}
-          setMonth={setMonth}
-          clickSubmit={clickSubmit}
+          questions={questions}
+          questionCount={questionCount}
+          answers={answers}
+          setAnswers={setAnswers}
           setClickSubmit={setClickSubmit}
         />
       )}

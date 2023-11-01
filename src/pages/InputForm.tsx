@@ -1,12 +1,12 @@
 import TextField from "@mui/material/TextField";
 import { Dispatch, FormEvent, SetStateAction } from "react";
+import { Question } from "./questions";
 
 interface Props {
-  year: string;
-  setYear: Dispatch<SetStateAction<string>>;
-  month: string;
-  setMonth: Dispatch<SetStateAction<string>>;
-  clickSubmit: boolean;
+  questions: Question[];
+  answers: string[];
+  questionCount: number;
+  setAnswers: Dispatch<SetStateAction<string[]>>;
   setClickSubmit: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -15,55 +15,40 @@ function submitForm(e: FormEvent<HTMLFormElement>) {
 }
 
 const InputForm = ({
-  year,
-  setYear,
-  month,
-  setMonth,
-  clickSubmit,
+  questions,
+  answers,
+  questionCount,
+  setAnswers,
   setClickSubmit,
 }: Props) => {
   return (
     <form onSubmit={submitForm}>
-      <TextField
-        id="standard-basic"
-        type="number"
-        label="請輸入照片年份"
-        variant="standard"
-        sx={{
-          margin: "2em",
-          "& label.Mui-focused": {
-            color: "#ffec51",
-          },
-          "& .MuiInput-underline:after": {
-            borderBottomColor: "#ffec51",
-          },
-        }}
-        value={year}
-        onChange={(e) => setYear(e.target.value)}
-      />
-
-      <TextField
-        id="standard-basic"
-        type="number"
-        label="請輸入照片月份"
-        variant="standard"
-        sx={{
-          margin: "2em",
-          "& label.Mui-focused": {
-            color: "#ffec51",
-          },
-          "& .MuiInput-underline:after": {
-            borderBottomColor: "#ffec51",
-          },
-        }}
-        value={month}
-        onChange={(e) => setMonth(e.target.value)}
-      />
+      {questions[questionCount].fields.map((field, index) => {
+        return (
+          <TextField
+            key={index}
+            type="number"
+            label={field.label}
+            variant="standard"
+            sx={{
+              margin: "2em",
+              "& label.Mui-focused": {
+                color: "#ffec51",
+              },
+              "& .MuiInput-underline:after": {
+                borderBottomColor: "#ffec51",
+              },
+            }}
+            value={answers.pop()}
+            onChange={(e) => setAnswers((prev) => [...prev, e.target.value])}
+          />
+        );
+      })}
 
       <button
         type="submit"
         onClick={() => {
-          setClickSubmit(!clickSubmit);
+          setClickSubmit(true);
         }}
       >
         送出友情考卷
