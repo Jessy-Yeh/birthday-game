@@ -1,9 +1,10 @@
-import { FormEvent, useState } from "react";
-import TextField from "@mui/material/TextField";
-``;
+import { useState } from "react";
+
+import InputForm from "./InputForm";
 import styles from "./Game.module.css";
 import photo1 from "../assets/2013-01-16.jpg";
 import photo2 from "/Users/yejiejun/Documents/web-dev/birthday-game/birthday-game/src/assets/2013-03-12.jpg";
+import Result from "./Result";
 
 const questions = [
   {
@@ -23,10 +24,7 @@ const Game = () => {
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [clickSubmit, setClickSubmit] = useState(false);
-
-  function submitForm(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-  }
+  const [point, setPoint] = useState(0);
 
   const formCollections = questions.map((question, index) => {
     return (
@@ -36,113 +34,41 @@ const Game = () => {
     );
   });
 
-  const ifYearCorrect = Number(year) === questions[questionCount].year;
-  const ifMonthCorrect = Number(month) === questions[questionCount].month;
+  // const calculatePoints = () => {
+  //   if (ifYearCorrect && ifMonthCorrect) {
+  //     setPoint((prev) => prev + 2);
+  //   } else if (
+  //     (ifYearCorrect && !ifMonthCorrect) ||
+  //     (!ifYearCorrect && ifMonthCorrect)
+  //   ) {
+  //     setPoint((prev) => prev + 1);
+  //   }
+  // };
 
   return (
     <>
+      <h2>
+        目前友情分數：<span>{point}</span>分
+      </h2>
       {formCollections[questionCount]}
       {clickSubmit ? (
-        <>
-          <div className={styles[`answer-display`]}>
-            <div className={styles[`answer-section`]}>
-              <div>
-                <h2 className={styles[`answer-title`]}>蓉雞答案</h2>
-                <p className={ifYearCorrect ? "" : styles[`wrong-answer`]}>
-                  {year}年
-                </p>
-                <p className={ifMonthCorrect ? "" : styles[`wrong-answer`]}>
-                  {month}月
-                </p>
-              </div>
-
-              <div>
-                <h2 className={styles[`answer-title`]}>正解</h2>
-                <p>{questions[questionCount].year}年</p>
-                <p>{questions[questionCount].month}月</p>
-              </div>
-            </div>
-
-            <div>
-              {ifYearCorrect && ifMonthCorrect ? (
-                <p className={styles[`answer-message`]}>
-                  漂亮٩(●˙▿˙●)۶…⋆ฺ 恭喜您得到<b>2</b>友情點數 蓉雞太優秀了嗚呼～
-                </p>
-              ) : null}
-
-              {(ifYearCorrect && !ifMonthCorrect) ||
-              (!ifYearCorrect && ifMonthCorrect) ? (
-                <p className={styles[`answer-message`]}>
-                  歪腰(//●⁰౪⁰●)// 您得到<b>1</b>友情點數 蓉雞請繼續加油！
-                </p>
-              ) : null}
-
-              {!ifYearCorrect && !ifMonthCorrect ? (
-                <p className={styles[`answer-message`]}>
-                  殘念 (ఠ్ఠ ˓̭ ఠ్ఠ) 您得到<b>0</b>友情點數
-                  蓉雞倢蛙友情受到嚴酷考驗
-                </p>
-              ) : null}
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            onClick={() => {
-              setClickSubmit(!clickSubmit);
-              setQuestionCount((prev) => prev + 1);
-            }}
-          >
-            下一回合
-          </button>
-        </>
+        <Result
+          year={year}
+          month={month}
+          clickSubmit={clickSubmit}
+          setClickSubmit={setClickSubmit}
+          questionCount={questionCount}
+          setQuestionCount={setQuestionCount}
+        />
       ) : (
-        <form onSubmit={submitForm}>
-          <TextField
-            id="standard-basic"
-            type="number"
-            label="請輸入照片年份"
-            variant="standard"
-            sx={{
-              margin: "2em",
-              "& label.Mui-focused": {
-                color: "#ffec51",
-              },
-              "& .MuiInput-underline:after": {
-                borderBottomColor: "#ffec51",
-              },
-            }}
-            value={year}
-            onChange={(e) => setYear(e.target.value)}
-          />
-
-          <TextField
-            id="standard-basic"
-            type="number"
-            label="請輸入照片月份"
-            variant="standard"
-            sx={{
-              margin: "2em",
-              "& label.Mui-focused": {
-                color: "#ffec51",
-              },
-              "& .MuiInput-underline:after": {
-                borderBottomColor: "#ffec51",
-              },
-            }}
-            value={month}
-            onChange={(e) => setMonth(e.target.value)}
-          />
-
-          <button
-            type="submit"
-            onClick={() => {
-              setClickSubmit(!clickSubmit);
-            }}
-          >
-            送出友情考卷
-          </button>
-        </form>
+        <InputForm
+          year={year}
+          setYear={setYear}
+          month={month}
+          setMonth={setMonth}
+          clickSubmit={clickSubmit}
+          setClickSubmit={setClickSubmit}
+        />
       )}
     </>
   );
