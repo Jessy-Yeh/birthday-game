@@ -8,13 +8,13 @@ import photo2 from "/Users/yejiejun/Documents/web-dev/birthday-game/birthday-gam
 const questions = [
   {
     link: photo1,
-    year: "2013",
-    month: "01",
+    year: 2013,
+    month: 1,
   },
   {
     link: photo2,
-    year: "2013",
-    month: "03",
+    year: 2013,
+    month: 3,
   },
 ];
 
@@ -22,6 +22,7 @@ const Game = () => {
   const [questionCount, setQuestionCount] = useState(0);
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
+  const [clickSubmit, setClickSubmit] = useState(false);
 
   function submitForm(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -31,16 +32,72 @@ const Game = () => {
     return (
       <div className={styles.form} key={index}>
         <img className={styles.photo} src={question.link} />
+      </div>
+    );
+  });
+
+  const ifYearCorrect = Number(year) === questions[questionCount].year;
+  const ifMonthCorrect = Number(month) === questions[questionCount].month;
+
+  return (
+    <>
+      {formCollections[questionCount]}
+      {clickSubmit ? (
+        <>
+          <div className={styles[`answer-display`]}>
+            <div className={styles[`answer-section`]}>
+              <div>
+                <h2 className={styles[`answer-title`]}>蓉雞答案</h2>
+                <p className={ifYearCorrect ? "" : styles[`wrong-answer`]}>
+                  {year}年
+                </p>
+                <p className={ifMonthCorrect ? "" : styles[`wrong-answer`]}>
+                  {month}月
+                </p>
+              </div>
+
+              <div>
+                <h2 className={styles[`answer-title`]}>正解</h2>
+                <p>{questions[questionCount].year}年</p>
+                <p>{questions[questionCount].month}月</p>
+              </div>
+            </div>
+
+            <div>
+              {ifYearCorrect && ifMonthCorrect ? (
+                <p className={styles[`answer-message`]}>
+                  漂亮٩(●˙▿˙●)۶…⋆ฺ 恭喜您得到<b>2</b>友情點數 蓉雞太優秀了嗚呼～
+                </p>
+              ) : null}
+
+              {(ifYearCorrect && !ifMonthCorrect) ||
+              (!ifYearCorrect && ifMonthCorrect) ? (
+                <p className={styles[`answer-message`]}>
+                  歪腰(//●⁰౪⁰●)// 您得到<b>1</b>友情點數 蓉雞請繼續加油！
+                </p>
+              ) : null}
+
+              {!ifYearCorrect && !ifMonthCorrect ? (
+                <p className={styles[`answer-message`]}>
+                  殘念 (ఠ్ఠ ˓̭ ఠ్ఠ) 您得到<b>0</b>友情點數
+                  蓉雞倢蛙友情受到嚴酷考驗
+                </p>
+              ) : null}
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            onClick={() => {
+              setClickSubmit(!clickSubmit);
+              setQuestionCount((prev) => prev + 1);
+            }}
+          >
+            下一回合
+          </button>
+        </>
+      ) : (
         <form onSubmit={submitForm}>
-          {/* <input
-              type="number"
-              placeholder="Year"
-              name="year"
-              value={year}
-              onChange={(e) => setYear(e.target.value)}
-              required
-            ></input>
-            <label htmlFor="year">請輸入照片年份</label> */}
           <TextField
             id="standard-basic"
             type="number"
@@ -59,11 +116,6 @@ const Game = () => {
             onChange={(e) => setYear(e.target.value)}
           />
 
-          {/* <p>請輸入照片月份</p> */}
-          {/* <input
-            value={month}
-            onChange={(e) => setMonth(e.target.value)}
-          ></input> */}
           <TextField
             id="standard-basic"
             type="number"
@@ -81,18 +133,19 @@ const Game = () => {
             value={month}
             onChange={(e) => setMonth(e.target.value)}
           />
+
           <button
             type="submit"
-            onClick={() => setQuestionCount((prev) => prev + 1)}
+            onClick={() => {
+              setClickSubmit(!clickSubmit);
+            }}
           >
             送出友情考卷
           </button>
         </form>
-      </div>
-    );
-  });
-
-  return <>{formCollections[questionCount]}</>;
+      )}
+    </>
+  );
 };
 
 export default Game;

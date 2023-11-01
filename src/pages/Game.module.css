@@ -12,3 +12,26 @@ form > button {
   display: block;
   margin: 1.3em auto;
 }
+
+.answer-section {
+  display: flex;
+  justify-content: space-around;
+}
+
+.answer-display {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.wrong-answer {
+  color: rgb(244, 123, 123);
+}
+
+.answer-title {
+  color: rgb(35, 203, 119);
+}
+
+.answer-message {
+  color: rgb(233, 208, 97);
+}
