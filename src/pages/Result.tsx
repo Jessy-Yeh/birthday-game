@@ -26,17 +26,18 @@ const Result = ({
       蓉雞太優秀了嗚呼～
     </>,
   ];
-  let message: JSX.Element = <></>;
 
-  if (correctAnswerCount === answers.length) {
-    message = resultMessages[2];
-  } else if (correctAnswerCount === 0) {
-    message = resultMessages[0];
-  } else {
-    message = resultMessages[1];
-  }
+  const getMessage = (correctAnswerCount: number) => {
+    if (correctAnswerCount === answers.length) {
+      return resultMessages[2];
+    } else if (correctAnswerCount === 0) {
+      return resultMessages[0];
+    } else {
+      return resultMessages[1];
+    }
+  };
 
-  // const message = getMessage(countCorrectAnswers);
+  const message = getMessage(correctAnswerCount);
 
   return (
     <>
