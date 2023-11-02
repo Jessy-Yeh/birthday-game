@@ -8,19 +8,30 @@ import { questions } from "./questions";
 const Game = () => {
   const [questionCount, setQuestionCount] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
-  const [clickSubmit, setClickSubmit] = useState(false);
+  const [showResult, setShowResult] = useState(false);
   const [totalPoints, setTotalPoints] = useState(0);
 
-  // const calculatePoints = () => {
-  //   if (ifYearCorrect && ifMonthCorrect) {
-  //     setPoint((prev) => prev + 2);
-  //   } else if (
-  //     (ifYearCorrect && !ifMonthCorrect) ||
-  //     (!ifYearCorrect && ifMonthCorrect)
-  //   ) {
-  //     setPoint((prev) => prev + 1);
-  //   }
-  // };
+  const currentQuestion = questions[questionCount];
+
+  let currentQuestionCorrectAnswerCount = 0;
+
+  answers.forEach((answer, index) => {
+    if (answer === currentQuestion.fields[index].solution) {
+      currentQuestionCorrectAnswerCount++;
+    }
+  });
+
+  const onClickNext = () => {
+    setAnswers([]);
+    setShowResult(false);
+    setQuestionCount((prev) => prev + 1);
+  };
+
+  const onSubmit = (newAnswers: string[]) => {
+    setAnswers(newAnswers);
+    setShowResult(true);
+    // setTotalPoints
+  };
 
   return (
     <>
@@ -28,25 +39,17 @@ const Game = () => {
         目前友情分數：<span>{totalPoints}</span>分
       </h2>
       <div className={styles.form}>
-        <img className={styles.photo} src={questions[questionCount].link} />
+        <img className={styles.photo} src={currentQuestion.link} />
       </div>
-      {clickSubmit ? (
+      {showResult ? (
         <Result
           answers={answers}
-          setAnswers={setAnswers}
-          setClickSubmit={setClickSubmit}
-          questionCount={questionCount}
-          setQuestionCount={setQuestionCount}
-          setTotalPoints={setTotalPoints}
+          question={currentQuestion}
+          correctAnswerCount={currentQuestionCorrectAnswerCount}
+          onClickNext={onClickNext}
         />
       ) : (
-        <InputForm
-          questions={questions}
-          questionCount={questionCount}
-          answers={answers}
-          setAnswers={setAnswers}
-          setClickSubmit={setClickSubmit}
-        />
+        <InputForm question={currentQuestion} onSubmit={onSubmit} />
       )}
     </>
   );
