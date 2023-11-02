@@ -1,56 +1,46 @@
-import TextField from "@mui/material/TextField";
-import { Dispatch, FormEvent, SetStateAction } from "react";
+import { useState } from "react";
 import { Question } from "./questions";
+import AnswerField from "./AnswerField";
 
 interface Props {
-  questions: Question[];
-  answers: string[];
-  questionCount: number;
-  setAnswers: Dispatch<SetStateAction<string[]>>;
-  setClickSubmit: Dispatch<SetStateAction<boolean>>;
+  question: Question;
+  onSubmit: (newAnswers: string[]) => void;
 }
 
-function submitForm(e: FormEvent<HTMLFormElement>) {
-  e.preventDefault();
-}
+const InputForm = ({ question, onSubmit }: Props) => {
+  const [localAnswers, setLocalAnswers] = useState<string[]>(() => {
+    const lengthOfQuestions = question.fields.length;
+    const answersArray = [];
+    for (let i = 0; i < lengthOfQuestions; i++) {
+      answersArray.push("");
+    }
+    return answersArray;
+  });
 
-const InputForm = ({
-  questions,
-  answers,
-  questionCount,
-  setAnswers,
-  setClickSubmit,
-}: Props) => {
+  function onAnswerChange(index: number, newValue: string) {
+    const newAnswers = [...localAnswers];
+    newAnswers[index] = newValue;
+    setLocalAnswers(newAnswers);
+  }
+
+  function handleSubmit() {
+    onSubmit(localAnswers);
+  }
+
   return (
-    <form onSubmit={submitForm}>
-      {questions[questionCount].fields.map((field, index) => {
+    <form>
+      {question.fields.map((field, index) => {
         return (
-          <TextField
+          <AnswerField
             key={index}
-            type="number"
             label={field.label}
-            variant="standard"
-            sx={{
-              margin: "2em",
-              "& label.Mui-focused": {
-                color: "#ffec51",
-              },
-              "& .MuiInput-underline:after": {
-                borderBottomColor: "#ffec51",
-              },
-            }}
-            value={answers.pop()}
-            onChange={(e) => setAnswers((prev) => [...prev, e.target.value])}
+            value={localAnswers[index]}
+            onChange={(e) => onAnswerChange(index, e.target.value)}
           />
         );
       })}
 
-      <button
-        type="submit"
-        onClick={() => {
-          setClickSubmit(true);
-        }}
-      >
+      <button type="submit" onClick={handleSubmit}>
         送出友情考卷
       </button>
     </form>
