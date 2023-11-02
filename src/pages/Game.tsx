@@ -15,18 +15,18 @@ const Game = () => {
 
   const currentQuestion = questions[questionCount];
 
-  let currentQuestionCorrectAnswerCount = 0;
-
-  answers.forEach((answer, index) => {
-    if (answer === currentQuestion.fields[index].solution) {
-      currentQuestionCorrectAnswerCount++;
-    }
-  });
+  const navigate = useNavigate();
 
   const onClickNext = () => {
-    setAnswers([]);
-    setShowResult(false);
-    setQuestionCount((prev) => prev + 1);
+    const isGameEnd = questionCount === questions.length - 1;
+
+    if (isGameEnd) {
+      navigate("/thankyou");
+    } else {
+      setAnswers([]);
+      setShowResult(false);
+      setQuestionCount((prev) => prev + 1);
+    }
   };
 
   const onSubmit = (newAnswers: string[]) => {
