@@ -4,12 +4,14 @@ import InputForm from "./InputForm";
 import styles from "./Game.module.css";
 import Result from "./Result";
 import { questions } from "./questions";
+import { useNavigate } from "react-router-dom";
 
 const Game = () => {
   const [questionCount, setQuestionCount] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
   const [showResult, setShowResult] = useState(false);
   const [totalPoints, setTotalPoints] = useState(0);
+  const navigate = useNavigate();
 
   const currentQuestion = questions[questionCount];
 
@@ -30,26 +32,34 @@ const Game = () => {
   const onSubmit = (newAnswers: string[]) => {
     setAnswers(newAnswers);
     setShowResult(true);
-    // setTotalPoints
+
+  const getThankyouPage = () => {
+    navigate("/thankyou");
   };
 
   return (
     <>
-      <h2>
-        目前友情分數：<span>{totalPoints}</span>分
-      </h2>
-      <div className={styles.form}>
-        <img className={styles.photo} src={currentQuestion.link} />
-      </div>
-      {showResult ? (
-        <Result
-          answers={answers}
-          question={currentQuestion}
-          correctAnswerCount={currentQuestionCorrectAnswerCount}
-          onClickNext={onClickNext}
-        />
+      {questionCount === questions.length ? (
+        getThankyouPage()
       ) : (
-        <InputForm question={currentQuestion} onSubmit={onSubmit} />
+        <>
+          <h2>
+            目前友情分數：<span>{totalPoints}</span>分
+          </h2>
+          <div className={styles.form}>
+            <img className={styles.photo} src={currentQuestion.link} />
+          </div>
+          {showResult ? (
+            <Result
+              answers={answers}
+              question={currentQuestion}
+              correctAnswerCount={currentQuestionCorrectAnswerCount}
+              onClickNext={onClickNext}
+            />
+          ) : (
+            <InputForm question={currentQuestion} onSubmit={onSubmit} />
+          )}
+        </>
       )}
     </>
   );
