@@ -10,7 +10,7 @@ interface Props {
 const AnswerField = ({ label, value, onChange }: Props) => {
   return (
     <TextField
-      type="number"
+      type="text"
       variant="standard"
       sx={{
         margin: "2em",
