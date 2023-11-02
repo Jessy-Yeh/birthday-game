@@ -1,17 +1,20 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import InputForm from "./InputForm";
-import styles from "./Game.module.css";
 import Result from "./Result";
+import styles from "./Game.module.css";
 import { questions } from "./questions";
-import { useNavigate } from "react-router-dom";
 
 const Game = () => {
   const [questionCount, setQuestionCount] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
   const [showResult, setShowResult] = useState(false);
   const [totalPoints, setTotalPoints] = useState(0);
-  const navigate = useNavigate();
+  const [
+    currentQuestionCorrectAnswerCount,
+    setCurrentQuestionCorrectAnswerCount,
+  ] = useState(0);
 
   const currentQuestion = questions[questionCount];
 
@@ -33,33 +36,41 @@ const Game = () => {
     setAnswers(newAnswers);
     setShowResult(true);
 
-  const getThankyouPage = () => {
-    navigate("/thankyou");
+    let tempCurrentQuestionCorrectAnswerCount = 0;
+    newAnswers.forEach((answer, index) => {
+      const currentField = currentQuestion.fields[index];
+      let isCorrect = false;
+      if (currentField.checkAnswer) {
+        isCorrect = currentField.checkAnswer(answer);
+      } else {
+        isCorrect = answer === currentField.solution;
+      }
+
+      if (isCorrect) {
+        tempCurrentQuestionCorrectAnswerCount++;
+      }
+    });
+    setCurrentQuestionCorrectAnswerCount(tempCurrentQuestionCorrectAnswerCount);
+    setTotalPoints((prev) => prev + tempCurrentQuestionCorrectAnswerCount);
   };
 
   return (
     <>
-      {questionCount === questions.length ? (
-        getThankyouPage()
+      <h2>
+        目前友情分數：<span>{totalPoints}</span>分
+      </h2>
+      <div className={styles.form}>
+        <img className={styles.photo} src={currentQuestion.link} />
+      </div>
+      {showResult ? (
+        <Result
+          answers={answers}
+          question={currentQuestion}
+          correctAnswerCount={currentQuestionCorrectAnswerCount}
+          onClickNext={onClickNext}
+        />
       ) : (
-        <>
-          <h2>
-            目前友情分數：<span>{totalPoints}</span>分
-          </h2>
-          <div className={styles.form}>
-            <img className={styles.photo} src={currentQuestion.link} />
-          </div>
-          {showResult ? (
-            <Result
-              answers={answers}
-              question={currentQuestion}
-              correctAnswerCount={currentQuestionCorrectAnswerCount}
-              onClickNext={onClickNext}
-            />
-          ) : (
-            <InputForm question={currentQuestion} onSubmit={onSubmit} />
-          )}
-        </>
+        <InputForm question={currentQuestion} onSubmit={onSubmit} />
       )}
     </>
   );
