@@ -1,3 +1,4 @@
+import getMessage from "../utils/getMessage";
 import styles from "./Game.module.css";
 import { Question } from "./questions";
 
@@ -14,30 +15,16 @@ const Result = ({
   correctAnswerCount,
   onClickNext,
 }: Props) => {
-  const resultMessages = [
-    <>
-      殘念 (ఠ్ఠ ˓̭ ఠ్ఠ) 您得到<b>0</b>友情分數 蓉雞倢蛙友情受到嚴酷考驗
-    </>,
-    <>
-      歪腰(//●⁰౪⁰●)// 您得到<b>{correctAnswerCount}</b>友情分數 蓉雞請繼續加油！
-    </>,
-    <>
-      漂亮٩(●˙▿˙●)۶…⋆ฺ 恭喜您得到<b>{correctAnswerCount}</b>友情分數
-      蓉雞太優秀了嗚呼～
-    </>,
-  ];
+  const message = getMessage(correctAnswerCount, answers);
 
-  const getMessage = (correctAnswerCount: number) => {
-    if (correctAnswerCount === answers.length) {
-      return resultMessages[2];
-    } else if (correctAnswerCount === 0) {
-      return resultMessages[0];
+  const areAnswersCorrect = answers.map((answer, index) => {
+    const currentField = question.fields[index];
+    if (currentField.checkAnswer) {
+      return currentField.checkAnswer(answer);
     } else {
-      return resultMessages[1];
+      return answer === currentField.solution;
     }
-  };
-
-  const message = getMessage(correctAnswerCount);
+  });
 
   return (
     <>
@@ -51,9 +38,7 @@ const Result = ({
                 <p
                   key={index}
                   className={
-                    answer === question.fields[index].solution
-                      ? ""
-                      : styles[`wrong-answer`]
+                    areAnswersCorrect[index] ? "" : styles[`wrong-answer`]
                   }
                 >
                   {answer}
