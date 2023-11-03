@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Question } from "./questions";
-import AnswerField from "./AnswerField";
+import { Question } from "../questions";
+import AnswerField from "../AnswerField/AnswerField";
 
 interface Props {
   question: Question;

@@ -1,6 +1,6 @@
-import getMessage from "../utils/getMessage";
-import styles from "./Game.module.css";
-import { Question, questions } from "./questions";
+import getMessage from "../../utils/getMessage";
+import styles from "../Game/Game.module.css";
+import { Question, questions } from "../questions";
 
 interface Props {
   answers: string[];

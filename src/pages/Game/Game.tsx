@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import InputForm from "./InputForm";
-import Result from "./Result";
+import InputForm from "../InputForm/InputForm";
+import Result from "../Result/Result";
 import styles from "./Game.module.css";
-import { questions } from "./questions";
-import { countCorrectAnswers } from "../utils/countCorrectAnswers";
+import { questions } from "../questions";
+import { countCorrectAnswers } from "../../utils/countCorrectAnswers";
 
 interface Props {
   totalPoints: number;
