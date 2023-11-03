@@ -5,6 +5,7 @@ import InputForm from "./InputForm";
 import Result from "./Result";
 import styles from "./Game.module.css";
 import { questions } from "./questions";
+import { countCorrectAnswers } from "../utils/countCorrectAnswers";
 
 const Game = () => {
   const [questionCount, setQuestionCount] = useState(0);
@@ -36,20 +37,10 @@ const Game = () => {
     setAnswers(newAnswers);
     setShowResult(true);
 
-    let tempCurrentQuestionCorrectAnswerCount = 0;
-    newAnswers.forEach((answer, index) => {
-      const currentField = currentQuestion.fields[index];
-      let isCorrect = false;
-      if (currentField.checkAnswer) {
-        isCorrect = currentField.checkAnswer(answer);
-      } else {
-        isCorrect = answer === currentField.solution;
-      }
-
-      if (isCorrect) {
-        tempCurrentQuestionCorrectAnswerCount++;
-      }
-    });
+    const tempCurrentQuestionCorrectAnswerCount = countCorrectAnswers(
+      newAnswers,
+      currentQuestion
+    );
     setCurrentQuestionCorrectAnswerCount(tempCurrentQuestionCorrectAnswerCount);
     setTotalPoints((prev) => prev + tempCurrentQuestionCorrectAnswerCount);
   };
