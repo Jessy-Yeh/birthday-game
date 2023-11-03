@@ -4,13 +4,24 @@ import "./App.css";
 import Game from "./pages/Game";
 import Home from "./pages/Home";
 import Thankyou from "./pages/Thankyou";
+import { useState } from "react";
 
 function App() {
+  const [totalPoints, setTotalPoints] = useState(0);
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/game" element={<Game />} />
-      <Route path="/thankyou" element={<Thankyou />} />
+      <Route
+        path="/game"
+        element={
+          <Game totalPoints={totalPoints} setTotalPoints={setTotalPoints} />
+        }
+      />
+      <Route
+        path="/thankyou"
+        element={<Thankyou totalPoints={totalPoints} />}
+      />
     </Routes>
   );
 }

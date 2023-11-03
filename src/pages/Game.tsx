@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import InputForm from "./InputForm";
@@ -7,11 +7,16 @@ import styles from "./Game.module.css";
 import { questions } from "./questions";
 import { countCorrectAnswers } from "../utils/countCorrectAnswers";
 
-const Game = () => {
+interface Props {
+  totalPoints: number;
+  setTotalPoints: Dispatch<SetStateAction<number>>;
+}
+
+const Game = ({ totalPoints, setTotalPoints }: Props) => {
   const [questionCount, setQuestionCount] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
   const [showResult, setShowResult] = useState(false);
-  const [totalPoints, setTotalPoints] = useState(0);
+
   const [
     currentQuestionCorrectAnswerCount,
     setCurrentQuestionCorrectAnswerCount,
