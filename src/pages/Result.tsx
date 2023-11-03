@@ -1,12 +1,13 @@
 import getMessage from "../utils/getMessage";
 import styles from "./Game.module.css";
-import { Question } from "./questions";
+import { Question, questions } from "./questions";
 
 interface Props {
   answers: string[];
   question: Question;
   correctAnswerCount: number;
   onClickNext: () => void;
+  questionCount: number;
 }
 
 const Result = ({
@@ -14,6 +15,7 @@ const Result = ({
   question,
   correctAnswerCount,
   onClickNext,
+  questionCount,
 }: Props) => {
   const message = getMessage(correctAnswerCount, answers);
 
@@ -60,7 +62,7 @@ const Result = ({
       </div>
 
       <button type="submit" onClick={onClickNext}>
-        下一回合
+        {questionCount === questions.length - 1 ? <>公開成果</> : <>下一回合</>}
       </button>
     </>
   );

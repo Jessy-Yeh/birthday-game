@@ -59,6 +59,7 @@ const Game = () => {
           question={currentQuestion}
           correctAnswerCount={currentQuestionCorrectAnswerCount}
           onClickNext={onClickNext}
+          questionCount={questionCount}
         />
       ) : (
         <InputForm question={currentQuestion} onSubmit={onSubmit} />
