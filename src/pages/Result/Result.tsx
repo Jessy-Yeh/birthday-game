@@ -39,9 +39,11 @@ const Result = ({
               return (
                 <p
                   key={index}
-                  className={
-                    areAnswersCorrect[index] ? "" : styles[`wrong-answer`]
-                  }
+                  className={`${
+                    areAnswersCorrect[index]
+                      ? "styles.input"
+                      : `${styles.input} ${styles[`wrong-answer`]}`
+                  } `}
                 >
                   {answer}
                 </p>
@@ -49,9 +51,11 @@ const Result = ({
             })}
           </div>
           <div>
-            <h2 className={styles[`answer-title`]}>正解</h2>
+            <h2 className={styles[`answer-title`]}>倢蛙正解</h2>
             {question.fields.map((field, index) => (
-              <p key={index}>{field.solution}</p>
+              <p className={styles.input} key={index}>
+                {field.solution}
+              </p>
             ))}
           </div>
         </div>
