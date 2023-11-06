@@ -1,12 +1,16 @@
+.background {
+  background-color: #fde9e7;
+  color: #fe9fb8;
+  /* color: #fec88a; */
+}
+
 .photo {
   width: 85%;
   border-radius: 20px;
+  border: 2px solid #fe9fb8;
+  padding: 10px;
+  background-color: #fff;
 }
-
-/* .form {
-  display: flex;
-  flex-direction: column;
-} */
 
 form > button {
   display: block;
@@ -24,14 +28,20 @@ form > button {
   margin-bottom: 1em;
 }
 
-.wrong-answer {
-  color: rgb(244, 123, 123);
-}
-
 .answer-title {
   color: rgb(35, 203, 119);
 }
 
 .answer-message {
   color: rgb(233, 208, 97);
+}
+
+.input {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #fea53f;
+}
+
+.wrong-answer {
+  color: rgb(246, 125, 181);
 }

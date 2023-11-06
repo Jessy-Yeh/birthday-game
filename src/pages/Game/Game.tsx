@@ -51,9 +51,9 @@ const Game = ({ totalPoints, setTotalPoints }: Props) => {
   };
 
   return (
-    <>
+    <div className={styles.background}>
       <h2>
-        目前友情分數：<span>{totalPoints}</span>分
+        目前默契分數：<span>{totalPoints}</span>分
       </h2>
       <div className={styles.form}>
         <img className={styles.photo} src={currentQuestion.link} />
@@ -69,7 +69,7 @@ const Game = ({ totalPoints, setTotalPoints }: Props) => {
       ) : (
         <InputForm question={currentQuestion} onSubmit={onSubmit} />
       )}
-    </>
+    </div>
   );
 };
 
