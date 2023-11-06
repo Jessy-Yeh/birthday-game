@@ -1,0 +1,43 @@
+.friends-image {
+  width: 100%;
+}
+
+.background {
+  background-color: rgb(255, 218, 188);
+}
+
+.subtitle {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.frog {
+  width: 26px;
+  height: 100%;
+  margin-right: 10px;
+}
+
+.chick {
+  width: 30px;
+  height: 100%;
+  margin-left: 10px;
+}
+
+.title-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rotating {
+  animation: rotate 1s infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
