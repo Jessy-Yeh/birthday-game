@@ -13,12 +13,15 @@ const AnswerField = ({ label, value, onChange }: Props) => {
       type="text"
       variant="standard"
       sx={{
+        "& label": {
+          color: "#FE9FB8 ",
+        },
         margin: "2em",
         "& label.Mui-focused": {
-          color: "#ffec51",
+          color: "#33498F",
         },
         "& .MuiInput-underline:after": {
-          borderBottomColor: "#ffec51",
+          borderBottomColor: "#33498F",
         },
       }}
       label={label}

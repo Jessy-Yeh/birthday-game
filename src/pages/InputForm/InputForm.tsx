@@ -41,7 +41,7 @@ const InputForm = ({ question, onSubmit }: Props) => {
       })}
 
       <button type="submit" onClick={handleSubmit}>
-        送出友情考卷
+        公布答案
       </button>
     </form>
   );
