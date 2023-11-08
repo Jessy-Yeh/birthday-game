@@ -39,11 +39,11 @@ const Result = ({
               return (
                 <p
                   key={index}
-                  className={`${
+                  className={
                     areAnswersCorrect[index]
-                      ? "styles.input"
+                      ? `${styles.input}`
                       : `${styles.input} ${styles[`wrong-answer`]}`
-                  } `}
+                  }
                 >
                   {answer}
                 </p>

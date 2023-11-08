@@ -32,34 +32,43 @@
 
 button {
   display: block;
-  margin: 1.3em auto;
+  margin: 0 auto;
 }
 
 .answer-section {
   display: flex;
-  justify-content: space-around;
+  width: 100vw;
+  justify-content: space-evenly;
+  background-color: rgb(255, 218, 188);
+  margin-top: 1.5rem;
+  padding: 10px 0;
 }
 
 .answer-display {
+  margin-bottom: 1em;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1em;
 }
 
 .answer-title {
   color: rgb(35, 203, 119);
+  margin: 0;
 }
 
 .answer-message {
   color: rgb(233, 208, 97);
+  margin: 0;
 }
 
 .input {
   font-size: 1.2em;
   font-weight: bold;
   color: #fea53f;
+  margin: 0.5em;
 }
 
 .wrong-answer {
+  font-size: 1.2em;
   color: rgb(246, 125, 181);
+  margin: 0.5em;
 }
