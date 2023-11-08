@@ -1,18 +1,36 @@
 .background {
   background-color: #fde9e7;
   color: #fe9fb8;
-  /* color: #fec88a; */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  margin: 0 0 1rem 0;
+}
+
+.image {
+  max-width: 85vw;
+  max-height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .photo {
-  width: 85%;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
   border-radius: 20px;
   border: 2px solid #fe9fb8;
   padding: 10px;
   background-color: #fff;
 }
 
-form > button {
+button {
   display: block;
   margin: 1.3em auto;
 }

@@ -52,10 +52,10 @@ const Game = ({ totalPoints, setTotalPoints }: Props) => {
 
   return (
     <div className={styles.background}>
-      <h2>
+      <h2 className={styles.title}>
         目前默契分數：<span>{totalPoints}</span>分
       </h2>
-      <div className={styles.form}>
+      <div className={styles.image}>
         <img className={styles.photo} src={currentQuestion.link} />
       </div>
       {showResult ? (
