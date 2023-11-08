@@ -40,15 +40,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .text-message {
   height: "50vh";
   resize: "none";
+  opacity: 60%;
   background-color: rgb(255, 218, 188);
-  color: rgb(246, 125, 181);
+  color: rgb(228, 24, 119);
   border-radius: 10px;
   border: none;
   padding: 1rem;
+  margin: 10px;
 }
