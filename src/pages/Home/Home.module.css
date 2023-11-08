@@ -11,15 +11,21 @@
   font-weight: bold;
 }
 
+.background {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .frog {
-  width: 26px;
-  height: 100%;
+  width: 25px;
   margin-right: 10px;
 }
 
 .chick {
   width: 30px;
-  height: 100%;
   margin-left: 10px;
 }
 
