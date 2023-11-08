@@ -18,15 +18,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 20px;
+  border: 2px solid #fe9fb8;
+  padding: 10px;
 }
 
 .photo {
   height: 100%;
   width: 100%;
-  object-fit: contain;
   border-radius: 20px;
-  border: 2px solid #fe9fb8;
-  padding: 10px;
+  object-fit: contain;
   background-color: #fff;
 }
 
