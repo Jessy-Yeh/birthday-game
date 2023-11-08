@@ -23,6 +23,7 @@ const AnswerField = ({ label, value, onChange }: Props) => {
         "& .MuiInput-underline:after": {
           borderBottomColor: "#33498F",
         },
+        width: "70vw",
       }}
       label={label}
       value={value}
