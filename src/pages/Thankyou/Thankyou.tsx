@@ -7,6 +7,7 @@ import {
   MutableRefObject,
   MouseEventHandler,
 } from "react";
+import Marquee from "react-fast-marquee";
 import Confetti from "react-confetti";
 // import Fade from "@mui/material/Fade";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
@@ -16,7 +17,7 @@ interface Props {
 
 const Thankyou = ({ totalPoints }: Props) => {
   const { width, height } = useWindowSize();
-  const [showConfetti, setShowConfetti] = useState(true);
+  // const [showConfetti, setShowConfetti] = useState(true);
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const [clickNext, setClickNext] = useState(false);
 
@@ -72,7 +73,8 @@ const Thankyou = ({ totalPoints }: Props) => {
       <div className={styles[`first-section`]}>
         <div></div>
         <div>
-          {showConfetti && <Confetti width={width} height={height}></Confetti>}
+          {/* {showConfetti && <Confetti width={width} height={height}></Confetti>} */}
+          <Confetti width={width} height={height}></Confetti>
           <h1 className={styles.title}>蓉雞得到的默契分數是</h1>
           <p className={styles.score}>{totalPoints * 4}分</p>
         </div>
@@ -96,7 +98,49 @@ const Thankyou = ({ totalPoints }: Props) => {
         </div> */}
 
       <div ref={messageRef} className={styles[`second-section`]}>
-        <h2>this is the second section wooo</h2>
+        <h2>倢蛙給蓉雞の話</h2>
+        {/* <textarea
+          rows={25}
+          cols={35}
+          id="aboutDescription"
+          className={styles[`text-message`]}
+        > */}
+        sit amet metus. Proin nec condimentum risus, vel sollicitudin nisi.
+        Pellentesque dapibus magna id lobortis vestibulum. Duis porta eleifend
+        justo ut ultricies. Suspendisse potenti. Curabitur sapien velit,
+        tincidunt non tempus nec, molestie nec ligula. Morbi aliquet odio non
+        consequat malesuada. Phasellus in neque ut nisl rutrum hendrerit
+        consequat id lorem. In hac habitasse platea dictumst. Nunc sit amet
+        magna pellentesque, cursus elit non, pulvinar nisl. Sed in iaculis eros,
+        eget laoreet lorem. Mauris vestibulum elit ac mauris bibendum, eu
+        dapibus neque pulvinar. Fusce ultricies aliquet accumsan. Interdum et
+        malesuada fames ac ante ipsum primis in faucibus. Quisque vitae arcu ut
+        mi fermentum vulputate vel gravida nisl. Nunc in commodo sem.
+        Suspendisse potenti. Nam aliquet dignissim felis in cursus. Donec in
+        nunc efficitur, sodales nunc non, blandit mi. Proin porta metus felis,
+        eget aliquam ante semper in. Quisque lacinia mauris vel porta varius.
+        Phasellus at lorem feugiat, fermentum ex sed, iaculis neque. Cras
+        dignissim convallis felis sit amet gravida. Integer sit amet nisl
+        auctor, gravida dolor eget, suscipit magna. Donec porttitor erat et
+        venenatis ultrices. Maecenas tempus ultricies condimentum. Maecenas
+        pellentesque pharetra dui. Vivamus velit ante, finibus et augue vitae,
+        suscipit dictum erat. Mauris convallis accumsan sem, dapibus rutrum nisi
+        tincidunt sit amet. Integer sodales ligula quis varius rhoncus.
+        Suspendisse ut venenatis lectus. Mauris scelerisque dapibus convallis.
+        In in lacus quis lorem vestibulum ultricies eu in nisi. Aliquam erat
+        volutpat. Ma eget aliquam ante semper in. Quisque lacinia mauris vel
+        porta varius. Phasellus at lorem feugiat, fermentum ex sed, iaculis
+        neque. Cras dignissim convallis felis sit amet gravida. Integer sit amet
+        nisl auctor, gravida dolor eget, suscipit magna. Donec porttitor erat et
+        venenatis ultrices. Maecenas tempus ultricies condimentum. Maecenas
+        pellentesque pharetra dui. Vivamus velit ante, finibus et augue vitae,
+        suscipit dictum erat. Mauris convallis accumsan sem, dapibus rutrum nisi
+        tincidunt sit amet. Integer sodales ligula quis varius rhoncus.
+        Suspendisse ut venenatis lectus. Mauris scelerisque dapibus convallis.
+        In in lacus quis lorem vestibulum ultricies eu in nisi. Aliquam erat
+        volutpat. Ma
+        {/* </textarea> */}
+        <Marquee>生日快樂 生日快樂 生日快樂 生日快樂 生日快樂</Marquee>
       </div>
     </div>
   );
