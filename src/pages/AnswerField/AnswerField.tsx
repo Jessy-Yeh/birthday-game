@@ -27,6 +27,7 @@ const AnswerField = ({ label, value, onChange }: Props) => {
       label={label}
       value={value}
       onChange={onChange}
+      required={true}
     />
   );
 };

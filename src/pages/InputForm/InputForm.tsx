@@ -8,6 +8,7 @@ interface Props {
 }
 
 const InputForm = ({ question, onSubmit }: Props) => {
+  const [isNotFilled, setIsNotFilled] = useState(false);
   const [localAnswers, setLocalAnswers] = useState<string[]>(() => {
     const lengthOfQuestions = question.fields.length;
     const answersArray = [];
@@ -23,8 +24,14 @@ const InputForm = ({ question, onSubmit }: Props) => {
     setLocalAnswers(newAnswers);
   }
 
+  const isFilled = (answer: string) => answer.length > 0;
+
   function handleSubmit() {
-    onSubmit(localAnswers);
+    if (!localAnswers.every(isFilled)) {
+      setIsNotFilled(true);
+    } else {
+      onSubmit(localAnswers);
+    }
   }
 
   return (
@@ -43,6 +50,7 @@ const InputForm = ({ question, onSubmit }: Props) => {
       <button type="submit" onClick={handleSubmit}>
         公布答案
       </button>
+      {isNotFilled ? <p>請輸入全部問題</p> : <></>}
     </form>
   );
 };
