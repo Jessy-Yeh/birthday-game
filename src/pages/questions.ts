@@ -1,19 +1,19 @@
 import photo1 from "../assets/2013-01-16.jpg";
 import photo2 from "../assets/2013-03-12.jpg";
-// import photo3 from "../assets/2013-03-22.jpg";
-// import photo4 from "../assets/2013-05-09.jpg";
-// import photo5 from "../assets/2013-05-28.jpg";
-// import photo6 from "../assets/2013-06-21 22.56.40.jpg";
-// import photo7 from "../assets/2013-10-19.jpg";
-// import photo8 from "../assets/2014-02-05.jpg";
-// import photo9 from "../assets/2014-11-11.jpg";
-// import photo10 from "../assets/2015-11-14.jpg";
-// import photo11 from "../assets/2016-10-30.1.jpg";
-// import photo12 from "../assets/2018-10-10.jpg";
-// import photo13 from "../assets/2019-10-05.jpg";
-// import photo14 from "../assets/2019-11-30.jpg";
-// import photo15 from "../assets/2022-09-15.jpg";
-// import photo16 from "../assets/2013-08-04 09.50.57.jpg";
+import photo3 from "../assets/2013-03-22.jpg";
+import photo4 from "../assets/2013-05-09.jpg";
+import photo5 from "../assets/2013-05-28.jpg";
+import photo6 from "../assets/2013-06-21 22.56.40.jpg";
+import photo7 from "../assets/2013-10-19.jpg";
+import photo8 from "../assets/2014-02-05.jpg";
+import photo9 from "../assets/2014-11-11.jpg";
+import photo10 from "../assets/2015-11-14.jpg";
+import photo11 from "../assets/2016-10-30.1.jpg";
+import photo12 from "../assets/2018-10-10.jpg";
+import photo13 from "../assets/2019-10-05.jpg";
+import photo14 from "../assets/2019-11-30.jpg";
+import photo15 from "../assets/2022-09-15.jpg";
+import photo16 from "../assets/2013-08-04 09.50.57.jpg";
 
 export type Question = {
   link: string;
@@ -25,46 +25,46 @@ export type Question = {
 };
 
 export const questions: Question[] = [
-  {
-    link: photo1,
-    fields: [
-      {
-        label: "拍攝年份是?",
-        solution: "2013",
-      },
-      {
-        label: "我們宿舍房號?",
-        solution: "3613",
-      },
-    ],
-  },
-  {
-    link: photo2,
-    fields: [
-      {
-        label: "我們在幹嘛?",
-        solution: "演戲",
-        checkAnswer: (answer) => {
-          if (answer.includes("演戲") || answer.includes("拍戲")) {
-            return true;
-          } else {
-            return false;
-          }
-        },
-      },
-      {
-        label: "這個地點是?",
-        solution: "中正宿舍陽台",
-        checkAnswer: (answer) => {
-          if (answer.includes("陽台") || answer.includes("宿舍")) {
-            return true;
-          } else {
-            return false;
-          }
-        },
-      },
-    ],
-  },
+  // {
+  //   link: photo1,
+  //   fields: [
+  //     {
+  //       label: "拍攝年份是?",
+  //       solution: "2013",
+  //     },
+  //     {
+  //       label: "我們宿舍房號?",
+  //       solution: "3613",
+  //     },
+  //   ],
+  // },
+  // {
+  //   link: photo2,
+  //   fields: [
+  //     {
+  //       label: "我們在幹嘛?",
+  //       solution: "演戲",
+  //       checkAnswer: (answer) => {
+  //         if (answer.includes("演戲") || answer.includes("拍戲")) {
+  //           return true;
+  //         } else {
+  //           return false;
+  //         }
+  //       },
+  //     },
+  //     {
+  //       label: "這個地點是?",
+  //       solution: "中正宿舍陽台",
+  //       checkAnswer: (answer) => {
+  //         if (answer.includes("陽台") || answer.includes("宿舍")) {
+  //           return true;
+  //         } else {
+  //           return false;
+  //         }
+  //       },
+  //     },
+  //   ],
+  // },
   // {
   //   link: photo3,
   //   fields: [{ label: "這個地點是?", solution: "早餐店" }],
@@ -153,29 +153,29 @@ export const questions: Question[] = [
   //     },
   //   ],
   // },
-  // {
-  //   link: photo10,
-  //   fields: [
-  //     { label: "拍攝地點是?", solution: "草悟道" },
-  //     { label: "晚餐吃了什麼?", solution: "滷味" },
-  //   ],
-  // },
-  // {
-  //   link: photo11,
-  //   fields: [
-  //     {
-  //       label: "當天吃早餐遇到哪位蓉雞朋友?",
-  //       solution: "韓籍",
-  //       checkAnswer: (answer) => {
-  //         if (answer.includes("韓")) {
-  //           return true;
-  //         } else {
-  //           return false;
-  //         }
-  //       },
-  //     },
-  //   ],
-  // },
+  {
+    link: photo10,
+    fields: [
+      { label: "拍攝地點是?", solution: "草悟道" },
+      { label: "晚餐吃了什麼?", solution: "滷味" },
+    ],
+  },
+  {
+    link: photo11,
+    fields: [
+      {
+        label: "當天吃早餐遇到哪位蓉雞朋友?",
+        solution: "韓籍",
+        checkAnswer: (answer) => {
+          if (answer.includes("韓")) {
+            return true;
+          } else {
+            return false;
+          }
+        },
+      },
+    ],
+  },
   // {
   //   link: photo16,
   //   fields: [
