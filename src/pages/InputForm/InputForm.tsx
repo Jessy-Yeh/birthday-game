@@ -24,10 +24,8 @@ const InputForm = ({ question, onSubmit }: Props) => {
     setLocalAnswers(newAnswers);
   }
 
-  const isFilled = (answer: string) => answer.length > 0;
-
   function handleSubmit() {
-    if (!localAnswers.every(isFilled)) {
+    if (!localAnswers.every((a) => a)) {
       setIsNotFilled(true);
     } else {
       onSubmit(localAnswers);
