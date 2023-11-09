@@ -80,3 +80,9 @@
     transform: rotate(360deg);
   }
 }
+
+.marquee {
+  font-family: "Caveat", cursive;
+  margin-top: 1.2rem;
+  color: #ffee2f;
+}

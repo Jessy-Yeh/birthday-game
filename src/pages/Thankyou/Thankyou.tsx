@@ -1,12 +1,6 @@
 import styles from "./Thankyou.module.css";
 import { useWindowSize } from "react-use";
-import {
-  useEffect,
-  useState,
-  useRef,
-  MutableRefObject,
-  MouseEventHandler,
-} from "react";
+import { useEffect, useState, useRef } from "react";
 import Marquee from "react-fast-marquee";
 import Confetti from "react-confetti";
 // import Fade from "@mui/material/Fade";
@@ -18,8 +12,6 @@ interface Props {
 const Thankyou = ({ totalPoints }: Props) => {
   const { width, height } = useWindowSize();
   // const [showConfetti, setShowConfetti] = useState(true);
-  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
-  const [clickNext, setClickNext] = useState(false);
 
   const messageRef = useRef(null);
   console.log(messageRef);
@@ -27,7 +19,6 @@ const Thankyou = ({ totalPoints }: Props) => {
   const scrollToSection = (elementRef) => {
     window.scrollTo({
       top: elementRef.current.offsetTop,
-      left: 0,
       behavior: "smooth",
     });
   };
@@ -40,26 +31,6 @@ const Thankyou = ({ totalPoints }: Props) => {
   //   return () => clearTimeout(timer);
   // }, []);
 
-  // useEffect(() => {
-  //   const displayNextMessage = () => {
-  //     if (currentMessageIndex < testMessages.length - 1) {
-  //       setTimeout(() => {
-  //         setCurrentMessageIndex((prevIndex) => prevIndex + 1);
-  //       }, 3000);
-  //     }
-  //   };
-
-  //   displayNextMessage();
-  // }, [currentMessageIndex, testMessages.length]);
-
-  // function getMessage() {
-  //   setClickNext((prev) => !prev);
-
-  //   if (messageRef.current) {
-  //     messageRef.current.scrollIntoView({ behavior: "smooth" });
-  //   }
-  // }
-
   return (
     <div className={styles.page}>
       <div className={styles[`first-section`]}>
@@ -69,7 +40,6 @@ const Thankyou = ({ totalPoints }: Props) => {
           <Confetti width={width} height={height}></Confetti>
           <h1 className={styles.title}>蓉雞得到的默契分數是</h1>
           <p className={styles.score}>{totalPoints}分</p>
-          {/* <Marquee>生日快樂 生日快樂 生日快樂 生日快樂 生日快樂</Marquee> */}
         </div>
 
         <div
@@ -85,7 +55,17 @@ const Thankyou = ({ totalPoints }: Props) => {
       <div className={styles[`second-section`]}></div>
 
       <div ref={messageRef} className={styles[`second-section`]}>
-        <h2>倢蛙給蓉雞の話</h2>
+        <div className={styles[`title-section`]}>
+          <img
+            className={`${styles.frog} ${styles.rotating}`}
+            src="/public/frog.png"
+          />
+          <h2>倢蛙給蓉雞の話</h2>
+          <img
+            className={`${styles.chick} ${styles.rotating}`}
+            src="/public/chick.png"
+          />
+        </div>
 
         <div className={styles[`text-message`]}>
           <p>嘿，蓉雞！ 恭喜妳得到{totalPoints}默契分</p>
@@ -135,6 +115,9 @@ const Thankyou = ({ totalPoints }: Props) => {
           <p>蓉雞</p>
           <p>生日快樂!!!!</p>
         </div>
+        <Marquee className={styles.marquee}>
+          🎂Happy Birthday 🎂Happy Birthday 🎂Happy Birthday 🎂Happy Birthday{" "}
+        </Marquee>
       </div>
     </div>
   );
