@@ -84,12 +84,12 @@ const Thankyou = ({ totalPoints }: Props) => {
         <div className={styles[`title-section`]}>
           <img
             className={`${styles.frog} ${styles.rotating}`}
-            src="/public/frog.png"
+            src="/frog.png"
           />
           <h2>倢蛙給蓉雞の話</h2>
           <img
             className={`${styles.chick} ${styles.rotating}`}
-            src="/public/chick.png"
+            src="/chick.png"
           />
         </div>
 
