@@ -1,7 +1,7 @@
 .background {
   background-color: #fde9e7;
   color: #fe9fb8;
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
