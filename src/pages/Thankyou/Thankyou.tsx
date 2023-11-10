@@ -120,7 +120,10 @@ const Thankyou = ({ totalPoints }: Props) => {
             </svg> */}
           </div>
           <div className={styles.test} ref={progressWheelRef}>
-            <p>嘿，蓉雞！ 恭喜妳得到{totalPoints}默契分</p>
+            <p>嘿，蓉雞！</p>
+            <p>恭喜妳在滿分25分之中</p>
+            <p>得到{totalPoints}分</p>
+            <p>蛙哈哈哈哈</p>
             <p>其實不管有沒有滿分</p>
             <p>我們的友誼早已超越所有分數！</p>
             <p>希望妳有享受作答每一題哈哈</p>
